@@ -2,8 +2,12 @@ import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { Input, InputDropdown, InputTextArea } from "../components";
+import { Dispatch, SetStateAction, useState } from "react";
+import { MockFeedback } from "../mock";
 
-const InputContainer = () => {
+const InputContainer = (
+  setData: Dispatch<SetStateAction<string | undefined>>
+) => {
   return (
     <div>
       <Input title="Feedback Title" label="Add a short, descriptive headline" />
@@ -12,6 +16,7 @@ const InputContainer = () => {
         label="Choose a category for your feedback"
         list={["Feature", "UI", "UX", "Enhancement", "Bug"]}
         flex="flex-col"
+        toggleFunction={(value) => setData(value)}
       />
       <InputTextArea
         title="Feedback Detail"
@@ -36,6 +41,7 @@ const ButtonContainer = () => {
 
 const AddFeedback: NextPage = () => {
   const router = useRouter();
+  const [data, setData] = useState<string>();
 
   return (
     <div className="w-128 mx-auto">
@@ -66,7 +72,7 @@ const AddFeedback: NextPage = () => {
           <h3 className="text-2xl text-darkBlue font-bold">
             Create New Feedback
           </h3>
-          {InputContainer()}
+          {InputContainer(setData)}
           {ButtonContainer()}
         </div>
       </div>
