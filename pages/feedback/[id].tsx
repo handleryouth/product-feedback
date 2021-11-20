@@ -87,7 +87,7 @@ export default function FeedbackDetails({ feedback }: FeedbackProps) {
         })}
       </div>
 
-      <div>
+      <div className="bg-white p-8 rounded-md">
         {feedback.map((item) => {
           return item.comments.map((comment, index) => {
             return (

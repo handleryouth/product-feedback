@@ -1,5 +1,8 @@
 import Image from "next/image";
-import { Comments } from "../mock";
+import { useState } from "react";
+import { useImmer } from "use-immer";
+import { InputComment } from ".";
+import { Comments, IndividualComment } from "../mock";
 
 export const Comment = ({
   comment,
@@ -8,32 +11,56 @@ export const Comment = ({
   username,
   replyTo,
 }: Comments) => {
+  const [reply, setReply] = useState<boolean>(false);
+  const [inputTemplate, setInputTemplate] = useImmer<
+    Omit<IndividualComment, "profilePicture">
+  >({
+    name: "Your name",
+    username: "Your name",
+    comment: "",
+  });
+
+  console.log(inputTemplate);
+
   return (
-    <div>
-      <div>
+    <div className="flex items-start my-8">
+      <div className="mr-4">
         <Image
           src={profilePicture}
           layout="fixed"
-          width={35}
-          height={35}
+          width={40}
+          height={40}
           alt="Profile Picture"
         />
       </div>
 
-      <div>
-        <div>
+      <div className="w-full">
+        <div className="flex items-center justify-between">
           <div>
-            <p>{name}</p>
-            <p>{username}</p>
+            <p className="text-darkBlue">{name}</p>
+            <p className="text-grey">@{username}</p>
           </div>
 
-          <p>Reply</p>
+          <p
+            className="text-seablue font-bold"
+            onClick={() => setReply((prevState) => !prevState)}
+          >
+            Reply
+          </p>
         </div>
 
         <p>
           {replyTo && <span>{replyTo}</span>}
           {comment}
         </p>
+
+        {reply && (
+          <InputComment
+            toggleFunction={(value) =>
+              setInputTemplate((draft) => void (draft.comment = value))
+            }
+          />
+        )}
       </div>
     </div>
   );

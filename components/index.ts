@@ -8,3 +8,4 @@ export * from "./StatusSection";
 export * from "./Layout";
 export * from "./RoadmapChild";
 export * from "./Comment";
+export * from "./Input/InputComment";
