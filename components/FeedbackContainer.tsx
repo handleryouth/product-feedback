@@ -1,20 +1,31 @@
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 interface FeedbackContainerProps {
+  id?: string;
   title: string;
   description: string;
-  type: "UI" | "UX" | "Enhancement" | "Bug" | "Feature";
+  type: "UI" | "UX" | "Enhancement" | "Bug" | "Feature" | string;
   vote: number;
 }
 
-export const FeedbackContainer: React.FC<FeedbackContainerProps> = ({
+export const FeedbackContainer = ({
   description,
   title,
   type,
   vote,
-}) => {
+  id,
+}: FeedbackContainerProps) => {
+  const router = useRouter();
   return (
-    <div className="flex my-4 bg-white items-center rounded-md p-4 justify-between hover:border-2 hover:border-purple">
+    <div
+      className={`flex my-4 bg-white items-center rounded-md p-4 justify-between cursor-pointer ${
+        id ? `hover:border-2 hover:border-purple` : ""
+      }`}
+      onClick={() => {
+        id && router.push(`/feedback/${id}`);
+      }}
+    >
       <div className="flex items-center">
         <div className="flex flex-col items-center bg-purple-500  w-10 rounded bg-lightgray font-bold">
           <div>

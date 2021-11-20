@@ -4,15 +4,17 @@ interface InputDropdownProps {
   list: string[];
   flex: "flex-col" | "flex-row";
   toggleFunction: (value: string) => void;
+  defaultValue?: string;
 }
 
-export const InputDropdown: React.FC<InputDropdownProps> = ({
+export const InputDropdown = ({
   list,
   title,
   label,
   flex,
   toggleFunction,
-}) => {
+  defaultValue,
+}: InputDropdownProps) => {
   return (
     <div className={`${flex === "flex-col" ? "my-4" : ""} cursor-pointer`}>
       <h3 className="text-darkBlue font-bold">{title}</h3>
@@ -33,6 +35,7 @@ export const InputDropdown: React.FC<InputDropdownProps> = ({
           className={`flex ${
             flex === "flex-col" ? "bg-lightgray mt-2" : "bg-darkBlue text-white"
           } h-10 pl-4 rounded-md `}
+          defaultValue={defaultValue ? defaultValue : "Bug"}
           onChange={(e) => toggleFunction(e.target.value)}
         >
           {list.map((item, index) => {

@@ -11,9 +11,10 @@ export interface Comments extends IndividualComment {
 }
 
 export interface MockFeedback {
+  id: string;
   title: string;
   description: string;
-  type: "UI" | "UX" | "Enhancement" | "Bug" | "Feature";
+  type: "UI" | "UX" | "Enhancement" | "Bug" | "Feature" | string;
   comments: Comments[];
   vote: number;
   status: "Suggestion" | "Planned" | "In-Progress" | "Live";
@@ -21,6 +22,7 @@ export interface MockFeedback {
 
 export const mockFeedback: MockFeedback[] = [
   {
+    id: "aa8fd03b-2566-43a3-9ba8-eaabe8ad1eea",
     title: "Add tags for solutions",
     description: "Easier to search for solutions based on a specific stack.",
     comments: [
@@ -44,6 +46,7 @@ export const mockFeedback: MockFeedback[] = [
     status: "Suggestion",
   },
   {
+    id: "aedf8879-8417-4d1b-884e-2ee1e0c8ce9d",
     title: "Add a dark theme option",
     description:
       "It would help people with light sensitivities and who prefer dark mode.",
@@ -86,6 +89,7 @@ export const mockFeedback: MockFeedback[] = [
     status: "Suggestion",
   },
   {
+    id: "28510cbb-f1e3-4f73-98b3-93842c589f21",
     title: "Q&A within the challenge hubs",
     description: "Challenge-specific Q&A would make for easy reference.",
     comments: [
@@ -102,6 +106,7 @@ export const mockFeedback: MockFeedback[] = [
     status: "Suggestion",
   },
   {
+    id: "d7cfe080-e4da-42eb-9152-584de79bebdb",
     title: "Add image/video upload to feedback",
     description: "Images and screencasts can enhance comments on solutions.",
     comments: [
@@ -125,6 +130,7 @@ export const mockFeedback: MockFeedback[] = [
     status: "Suggestion",
   },
   {
+    id: "f8d53c2e-2875-4182-b837-5f8031e7e417",
     title: "Ability to follow others",
     description: "Stay updated on comments and solutions other people post.",
     comments: [
@@ -158,6 +164,7 @@ export const mockFeedback: MockFeedback[] = [
     status: "Suggestion",
   },
   {
+    id: "b26366fd-a170-4227-8fb8-25166000ab91",
     title: "Preview images not loading",
     description:
       "Challenge preview images are missing when you apply a filter.",
@@ -167,6 +174,7 @@ export const mockFeedback: MockFeedback[] = [
     status: "Suggestion",
   },
   {
+    id: "56d7ee1f-a55e-42dc-ab5f-b06b9aa1f017",
     title: "More comprehensive reports",
     description:
       "It would be great to see a more detailed breakdown of solutions.",
@@ -191,6 +199,7 @@ export const mockFeedback: MockFeedback[] = [
     status: "Planned",
   },
   {
+    id: "49a3656e-8521-4f7b-a919-614345276359",
     title: "Learning Paths",
     description:
       "Sequenced projects for different goals to help people improve.",
@@ -208,6 +217,7 @@ export const mockFeedback: MockFeedback[] = [
     status: "Planned",
   },
   {
+    id: "2d0927f8-2d5c-48f0-8ad9-661e86743b6d",
     title: "One-click portfolio generation",
     description:
       "Add ability to create professional looking portfolio from profile.",
@@ -225,6 +235,7 @@ export const mockFeedback: MockFeedback[] = [
     status: "In-Progress",
   },
   {
+    id: "8f9b7e7a-a126-424e-adea-f643287172d9",
     title: "Bookmark challenges",
     description: "Be able to bookmark challenges to take later on.",
     type: "Feature",
@@ -241,6 +252,7 @@ export const mockFeedback: MockFeedback[] = [
     status: "In-Progress",
   },
   {
+    id: "31c1a60f-0e19-4f9d-b77e-383fcda696ab",
     title: "Animated solution screenshots",
     description:
       "Screenshots of solutions with animations don’t display correctly.",
@@ -250,6 +262,7 @@ export const mockFeedback: MockFeedback[] = [
     vote: 9,
   },
   {
+    id: "b9f3bb01-390b-42f0-9dec-6059aa9dfdf4",
     title: "Add micro-interactions",
     description: "Small animations at specific points can add delight.",
     comments: [

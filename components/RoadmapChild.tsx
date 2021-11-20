@@ -4,11 +4,7 @@ interface RoadmapChildProps {
   color: string;
 }
 
-export const RoadmapChild: React.FC<RoadmapChildProps> = ({
-  title,
-  amount,
-  color,
-}) => {
+export const RoadmapChild = ({ title, amount, color }: RoadmapChildProps) => {
   return (
     <div className="flex justify-between items-center">
       <div className="flex items-center">

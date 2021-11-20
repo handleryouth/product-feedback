@@ -10,21 +10,16 @@ interface SidebarProps {
   >;
 }
 
-const filterContainer = (
-  setFilter: React.Dispatch<
-    SetStateAction<undefined | "UI" | "UX" | "Enhancement" | "Bug" | "Feature">
-  >,
-  filter: undefined | "UI" | "UX" | "Enhancement" | "Bug" | "Feature"
-) => {
+const filterContainer = ({ setFilter, filter }: SidebarProps) => {
   return (
     <div className="flex flex-wrap bg-white w-60 rounded-md p-4 my-8">
       <div
         onClick={() => setFilter(undefined)}
         className={`${
           filter === undefined
-            ? "bg-seablue text-white"
-            : "text-blue-600 bg-lightgray"
-        } m-2 py-1 px-4 rounded-md ml-2  font-black cursor-pointer`}
+            ? "bg-seablue text-white "
+            : "text-blue-600 bg-lightgray hover:bg-grey hover:bg-opacity-50"
+        } m-2 py-1 px-4 rounded-md ml-2  font-black cursor-pointer  `}
       >
         All
       </div>
@@ -33,7 +28,7 @@ const filterContainer = (
         className={`${
           filter === "UI"
             ? "bg-seablue text-white"
-            : "text-blue-600 bg-lightgray"
+            : "text-blue-600 bg-lightgray hover:bg-grey hover:bg-opacity-50"
         } m-2 py-1 px-4 rounded-md ml-2 font-black cursor-pointer`}
       >
         UI
@@ -43,8 +38,8 @@ const filterContainer = (
         className={`${
           filter === "UX"
             ? "bg-seablue text-white"
-            : "text-blue-600 bg-lightgray"
-        } m-2 py-1 px-4 rounded-md ml-2 font-black cursor-pointer`}
+            : "text-blue-600 bg-lightgray hover:bg-grey hover:bg-opacity-50"
+        } m-2 py-1 px-4 rounded-md ml-2 font-black cursor-pointer hover:bg-grey`}
       >
         UX
       </div>
@@ -53,8 +48,8 @@ const filterContainer = (
         className={`${
           filter === "Enhancement"
             ? "bg-seablue text-white"
-            : "text-blue-600 bg-lightgray"
-        } m-2 py-1 px-4 rounded-md ml-2 font-black cursor-pointer`}
+            : "text-blue-600 bg-lightgray hover:bg-grey hover:bg-opacity-50"
+        } m-2 py-1 px-4 rounded-md ml-2 font-black cursor-pointer hover:bg-grey`}
       >
         Enhancement
       </div>
@@ -63,8 +58,8 @@ const filterContainer = (
         className={`${
           filter === "Bug"
             ? "bg-seablue text-white"
-            : "text-blue-600 bg-lightgray"
-        } m-2 py-1 px-4 rounded-md ml-2  font-black cursor-pointer`}
+            : "text-blue-600 bg-lightgray hover:bg-grey hover:bg-opacity-50"
+        } m-2 py-1 px-4 rounded-md ml-2  font-black cursor-pointer hover:bg-grey`}
       >
         Bug
       </div>
@@ -73,8 +68,8 @@ const filterContainer = (
         className={`${
           filter === "Feature"
             ? "bg-seablue text-white"
-            : "text-blue-600 bg-lightgray"
-        } m-2 py-1 px-4 rounded-md ml-2  font-black cursor-pointer`}
+            : "text-blue-600 bg-lightgray hover:bg-grey hover:bg-opacity-50"
+        } m-2 py-1 px-4 rounded-md ml-2  font-black cursor-pointer hover:bg-grey`}
       >
         Feature
       </div>
@@ -90,7 +85,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ filter, setFilter }) => {
         <p>Feedback Board</p>
       </div>
 
-      {filterContainer(setFilter, filter)}
+      {filterContainer({ setFilter, filter })}
 
       <div className="w-60 rounded-md bg-white p-4">
         <div className="flex justify-between mb-4">

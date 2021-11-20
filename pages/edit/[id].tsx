@@ -1,13 +1,38 @@
-import type { NextPage } from "next";
-import { useRouter } from "next/router";
-import Head from "next/head";
+import { GetStaticPaths, GetStaticProps } from "next";
 import Image from "next/image";
-import { v4 as uuidv4 } from "uuid";
-import { Input, InputDropdown, InputTextArea } from "../components";
-import { MockFeedback } from "../mock";
+import Head from "next/head";
+import { useRouter } from "next/router";
 import { Updater, useImmer } from "use-immer";
+import { InputDropdown, Input, InputTextArea } from "../../components";
+import { mockFeedback, MockFeedback } from "../../mock";
 
-const InputContainer = (setInputTemplate: Updater<MockFeedback>) => {
+export const getStaticPaths: GetStaticPaths = async () => {
+  const paths = mockFeedback.map((item) => {
+    return {
+      params: { id: item.id.toString() },
+    };
+  });
+
+  return {
+    paths: paths,
+    fallback: false,
+  };
+};
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  return {
+    props: {
+      feedback: mockFeedback.filter(
+        (mock) => mock.id === context.params?.id
+      )[0],
+    },
+  };
+};
+
+const InputContainer = (
+  inputTemplate: MockFeedback,
+  setInputTemplate: Updater<MockFeedback>
+) => {
   return (
     <div>
       <Input
@@ -16,12 +41,14 @@ const InputContainer = (setInputTemplate: Updater<MockFeedback>) => {
         toggleFunction={(value) =>
           setInputTemplate((draft) => void (draft.title = value))
         }
+        defaultValue={inputTemplate.title}
       />
       <InputDropdown
         title="Category"
         label="Choose a category for your feedback"
         list={["Feature", "UI", "UX", "Enhancement", "Bug"]}
         flex="flex-col"
+        defaultValue={inputTemplate.type}
         toggleFunction={(value) =>
           setInputTemplate((draft) => void (draft.type = value))
         }
@@ -29,6 +56,7 @@ const InputContainer = (setInputTemplate: Updater<MockFeedback>) => {
       <InputTextArea
         title="Feedback Detail"
         label="Include any specific comments on what should be improved, added, etc."
+        defaultValue={inputTemplate.description}
         toggleFunction={(value) =>
           setInputTemplate((draft) => void (draft.description = value))
         }
@@ -54,22 +82,26 @@ const ButtonContainer = () => {
   );
 };
 
-const AddFeedback: NextPage = () => {
+interface FeedbackProps {
+  feedback: MockFeedback;
+}
+
+export default function EditFeedback({ feedback }: FeedbackProps) {
   const router = useRouter();
   const [inputTemplate, setInputTemplate] = useImmer<MockFeedback>({
-    id: uuidv4(),
-    comments: [],
-    description: "",
-    status: "Suggestion",
-    title: "",
-    type: "Bug",
-    vote: 0,
+    id: feedback.id,
+    comments: feedback.comments,
+    description: feedback.description,
+    status: feedback.status,
+    title: feedback.title,
+    type: feedback.type,
+    vote: feedback.vote,
   });
 
   return (
     <div className="w-128 mx-auto">
       <Head>
-        <title>Add New Feedback</title>
+        <title>Edit Feedback</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta
           name="description"
@@ -107,13 +139,11 @@ const AddFeedback: NextPage = () => {
             Create New Feedback
           </h3>
 
-          {InputContainer(setInputTemplate)}
+          {InputContainer(inputTemplate, setInputTemplate)}
 
           {ButtonContainer()}
         </div>
       </div>
     </div>
   );
-};
-
-export default AddFeedback;
+}

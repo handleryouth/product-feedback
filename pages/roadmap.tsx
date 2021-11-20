@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Link from "next/link";
+import Head from "next/head";
 import Image from "next/image";
 import { StatusSection } from "../components";
 import { mockFeedback } from "../mock";
@@ -43,6 +44,16 @@ const navbar = () => {
 const Roadmap: NextPage = () => {
   return (
     <div className="w-4/5 mx-auto">
+      <Head>
+        <title>Road Map</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta
+          name="description"
+          content="Product Feedback from frontend mentor"
+        />
+        <meta name="keywords" content="NextJS, Tailwind CSS, React" />
+        <meta name="author" content="handleryouth" />
+      </Head>
       {navbar()}
 
       <div className="grid grid-cols-3 gap-x-10 mt-16">

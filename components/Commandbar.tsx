@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import Image from "next/image";
 import { Dispatch, SetStateAction } from "react";
 import { InputDropdown } from ".";
@@ -8,10 +9,8 @@ interface CommandbarProps {
   feedback: MockFeedback[];
 }
 
-export const Commandbar: React.FC<CommandbarProps> = ({
-  setSort,
-  feedback,
-}) => {
+export const Commandbar = ({ setSort, feedback }: CommandbarProps) => {
+  const router = useRouter();
   return (
     <div className="bg-darkBlue flex items-center p-4 justify-between text-white rounded-md font-bold">
       <div className="flex items-center">
@@ -40,7 +39,10 @@ export const Commandbar: React.FC<CommandbarProps> = ({
         </div>
       </div>
 
-      <button className="text-white bg-purple rounded-md py-3 px-5 font-bold">
+      <button
+        className="text-white bg-purple rounded-md py-3 px-5 font-bold"
+        onClick={() => router.push("/addfeedback")}
+      >
         + Add Feedback
       </button>
     </div>

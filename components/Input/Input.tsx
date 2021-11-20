@@ -1,9 +1,16 @@
 interface InputProps {
   title: string;
   label: string;
+  toggleFunction: (e: string) => void;
+  defaultValue?: string;
 }
 
-export const Input: React.FC<InputProps> = ({ title, label }) => {
+export const Input = ({
+  title,
+  label,
+  toggleFunction,
+  defaultValue,
+}: InputProps) => {
   return (
     <div className="my-4">
       <h3 className="text-darkBlue font-bold">{title}</h3>
@@ -13,6 +20,8 @@ export const Input: React.FC<InputProps> = ({ title, label }) => {
           id={title}
           type="text"
           className="bg-lightgray h-10 pl-4 rounded-md mt-2"
+          onChange={(e) => toggleFunction(e.target.value)}
+          defaultValue={defaultValue}
         />
       </div>
     </div>

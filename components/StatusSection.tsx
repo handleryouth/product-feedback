@@ -9,11 +9,11 @@ interface StatusSectionProps {
   data: MockFeedback[];
 }
 
-export const StatusSection: React.FC<StatusSectionProps> = ({
+export const StatusSection = ({
   title,
   description,
   data,
-}) => {
+}: StatusSectionProps) => {
   const borderColorSwitching = useCallback(() => {
     switch (title) {
       case "Planned":

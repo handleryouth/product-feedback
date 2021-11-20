@@ -7,3 +7,4 @@ export * from "./Input/InputTextArea";
 export * from "./StatusSection";
 export * from "./Layout";
 export * from "./RoadmapChild";
+export * from "./Comment";

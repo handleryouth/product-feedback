@@ -10,15 +10,19 @@
   "dependencies": {
     "@fontsource/jost": "^4.5.1",
     "autoprefixer": "^10.4.0",
+    "immer": "^9.0.6",
     "next": "12.0.3",
     "postcss": "^8.3.11",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "tailwindcss": "^2.2.19"
+    "tailwindcss": "^2.2.19",
+    "use-immer": "^0.6.0",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "@types/node": "16.11.6",
+    "@types/node": "^16.11.7",
     "@types/react": "17.0.34",
+    "@types/uuid": "^8.3.1",
     "eslint": "7",
     "eslint-config-next": "12.0.3",
     "typescript": "4.4.4"
