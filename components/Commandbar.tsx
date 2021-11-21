@@ -12,7 +12,7 @@ interface CommandbarProps {
 export const Commandbar = ({ setSort, feedback }: CommandbarProps) => {
   const router = useRouter();
   return (
-    <div className="bg-darkBlue flex items-center p-4 justify-between text-white rounded-md font-bold">
+    <div className="bg-darkBlue flex items-center p-4 justify-between text-white md:rounded-md font-bold">
       <div className="flex items-center">
         <Image
           src="/Images/suggestions/icon-suggestions.svg"

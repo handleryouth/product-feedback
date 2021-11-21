@@ -3,7 +3,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { Comment, FeedbackContainer } from "../../components";
-import { MockFeedback, mockFeedback } from "../../mock";
+import { mockFeedback, MockFeedback } from "../../mock";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = mockFeedback.map((item) => {

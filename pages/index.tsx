@@ -72,7 +72,7 @@ const Home: NextPage = () => {
   }, [filter, handleSorting]);
 
   return (
-    <div className="flex w-4/5 mx-auto h-auto ">
+    <div className="flex flex-col mx-auto h-auto px-8 lg:px-0 lg:flex-row lg:w-5/6 ">
       <Head>
         <title>Product Feedback</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />

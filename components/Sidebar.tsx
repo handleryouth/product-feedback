@@ -12,7 +12,7 @@ interface SidebarProps {
 
 const filterContainer = ({ setFilter, filter }: SidebarProps) => {
   return (
-    <div className="flex flex-wrap bg-white w-60 rounded-md p-4 my-8">
+    <div className="hidden bg-white w-60 rounded-md p-4 my-8  md:flex flex-wrap ">
       <div
         onClick={() => setFilter(undefined)}
         className={`${
@@ -77,17 +77,17 @@ const filterContainer = ({ setFilter, filter }: SidebarProps) => {
   );
 };
 
-export const Sidebar: React.FC<SidebarProps> = ({ filter, setFilter }) => {
+export const Sidebar = ({ filter, setFilter }: SidebarProps) => {
   return (
-    <div className="mr-9 ">
-      <div className="flex bg-header-background-desktop flex-col w-60 h-32 rounded-md justify-end text-white pb-4 pl-4">
+    <div className=" md:mr-9 md:flex md:flex-row md:items-center md:justify-between lg:justify-start lg:flex-col">
+      <div className="w-full flex  bg-cover bg-header-background-mobile md:w-auto md:bg-header-background-tablet  bg-no-repeat flex-col  md:h-44  md:rounded-md justify-end text-white p-4 lg:bg-header-background-desktop lg:w-60 lg:h-32">
         <h3 className="text-xl font-bold">Frontend Mentor</h3>
         <p>Feedback Board</p>
       </div>
 
       {filterContainer({ setFilter, filter })}
 
-      <div className="w-60 rounded-md bg-white p-4">
+      <div className="rounded-md bg-white p-4 hidden md:block  h-44 lg:h-auto lg:w-60">
         <div className="flex justify-between mb-4">
           <p>RoadMap</p>
           <Link href="/roadmap" passHref>
@@ -95,7 +95,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ filter, setFilter }) => {
           </Link>
         </div>
 
-        <div>
+        <div className="w-44 h-44">
           <RoadmapChild
             title="Planned"
             amount={

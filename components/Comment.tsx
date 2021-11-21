@@ -42,7 +42,7 @@ export const Comment = ({
           </div>
 
           <p
-            className="text-seablue font-bold"
+            className="text-seablue font-bold cursor-pointer"
             onClick={() => setReply((prevState) => !prevState)}
           >
             Reply

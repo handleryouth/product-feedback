@@ -16,6 +16,10 @@ module.exports = {
       backgroundImage: {
         "header-background-desktop":
           "url('/Images/suggestions/desktop/background-header.png')",
+        "header-background-tablet":
+          "url('/Images/suggestions/tablet/background-header.png')",
+        "header-background-mobile":
+          "url('/Images/suggestions/mobile/background-header.png')",
       },
       width: {
         112: "28rem",
