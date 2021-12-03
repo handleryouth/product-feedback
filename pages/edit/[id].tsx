@@ -68,14 +68,14 @@ const InputContainer = (
 const ButtonContainer = () => {
   const router = useRouter();
   return (
-    <div className="text-white flex justify-end mt-8">
+    <div className="flex-col sm:flex-row  text-white flex justify-end mt-8">
       <button
-        className="bg-darkBlue mr-4 px-8 py-3 rounded-md font-bold"
+        className="bg-darkBlue sm:mr-4 px-8 py-3 rounded-md font-bold"
         onClick={() => router.back()}
       >
         Cancel
       </button>
-      <button className="bg-purple px-8 py-3 rounded-md font-bold">
+      <button className="bg-purple px-8 py-3 rounded-md font-bold mt-4 sm:mt-0">
         Add Feedback
       </button>
     </div>
@@ -99,7 +99,7 @@ export default function EditFeedback({ feedback }: FeedbackProps) {
   });
 
   return (
-    <div className="w-128 mx-auto">
+    <div className="sm:w-128 mx-auto p-8">
       <Head>
         <title>Edit Feedback</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />

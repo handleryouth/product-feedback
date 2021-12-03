@@ -2,12 +2,12 @@ import type { NextPage } from "next";
 import Link from "next/link";
 import Head from "next/head";
 import Image from "next/image";
-import { StatusSection } from "../components";
+import { Roadmaptab, StatusSection } from "../components";
 import { mockFeedback } from "../mock";
 
 const navbar = () => {
   return (
-    <div className="flex items-center justify-between bg-darkBlue text-white rounded p-8">
+    <div className="flex-col sm:flex-row flex items-center justify-between bg-darkBlue text-white rounded p-8">
       <div>
         <Link href="/" passHref>
           <div className="flex items-center cursor-pointer">
@@ -26,7 +26,7 @@ const navbar = () => {
       </div>
 
       <Link href="/addfeedback" passHref>
-        <button className="bg-red-500 flex items-center px-8 py-3 rounded-xl">
+        <button className="bg-red-500 flex items-center px-8 py-3 rounded-xl mt-4 sm:mt-0">
           <Image
             src="/Images/shared/icon-plus.svg"
             alt="Add Icon"
@@ -43,7 +43,7 @@ const navbar = () => {
 
 const Roadmap: NextPage = () => {
   return (
-    <div className="w-4/5 mx-auto">
+    <div className="w-4/5 mx-auto py-8">
       <Head>
         <title>Road Map</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
@@ -54,9 +54,11 @@ const Roadmap: NextPage = () => {
         <meta name="keywords" content="NextJS, Tailwind CSS, React" />
         <meta name="author" content="handleryouth" />
       </Head>
-      {navbar()}
 
-      <div className="grid grid-cols-3 gap-x-10 mt-16">
+      {navbar()}
+      <Roadmaptab />
+
+      <div className="hidden md:grid grid-cols-3 gap-x-10 mt-16">
         <StatusSection
           title="Planned"
           description="Ideas prioritized for research"

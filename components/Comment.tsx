@@ -20,8 +20,6 @@ export const Comment = ({
     comment: "",
   });
 
-  console.log(inputTemplate);
-
   return (
     <div className="flex items-start my-8">
       <div className="mr-4">

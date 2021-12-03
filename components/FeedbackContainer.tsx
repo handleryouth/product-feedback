@@ -19,7 +19,7 @@ export const FeedbackContainer = ({
   const router = useRouter();
   return (
     <div
-      className={`flex my-4 bg-white items-center rounded-md p-4 justify-between cursor-pointer ${
+      className={`flex-col sm:flex-row flex my-4 bg-white sm:items-center rounded-md py-4 px-8 justify-between cursor-pointer ${
         id ? `hover:border-2 hover:border-purple` : ""
       }`}
       onClick={() => {
@@ -27,7 +27,7 @@ export const FeedbackContainer = ({
       }}
     >
       <div className="flex items-center">
-        <div className="flex flex-col items-center bg-purple-500  w-10 rounded bg-lightgray font-bold">
+        <div className="hidden sm:flex flex-col items-center bg-purple-500  w-auto py-2 px-4 rounded bg-lightgray font-bold">
           <div>
             <Image
               src="/Images/shared/icon-arrow-up.svg"
@@ -41,7 +41,7 @@ export const FeedbackContainer = ({
           {vote}
         </div>
 
-        <div className="mx-8">
+        <div className="sm:ml-8">
           <h3 className="text-xl font-extrabold text-darkBlue">{title}</h3>
           <p className="my-2 text-grey">{description}</p>
           <div className="text-seablue bg-lightgray font-bold w-min px-2 py-1 rounded">
@@ -50,18 +50,34 @@ export const FeedbackContainer = ({
         </div>
       </div>
 
-      <div className="flex items-center">
-        <div className="mr-2 flex items-center">
-          <Image
-            src="/Images/shared/icon-comments.svg"
-            alt="Comment Illustration"
-            width={18}
-            height={18}
-            layout="fixed"
-          />
+      <div className="flex items-center mt-4 sm:mt-0 justify-between">
+        <div className="flex sm:hidden flex-col items-center bg-purple-500  w-auto py-2 px-4 rounded bg-lightgray font-bold">
+          <div>
+            <Image
+              src="/Images/shared/icon-arrow-up.svg"
+              alt="Arrow up"
+              width={10}
+              height={7}
+              layout="fixed"
+            />
+          </div>
+
+          {vote}
         </div>
 
-        <p>{vote}</p>
+        <div className="flex items-center">
+          <div className="mr-2 flex items-center">
+            <Image
+              src="/Images/shared/icon-comments.svg"
+              alt="Comment Illustration"
+              width={18}
+              height={18}
+              layout="fixed"
+            />
+          </div>
+
+          <p>{vote}</p>
+        </div>
       </div>
     </div>
   );

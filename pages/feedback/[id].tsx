@@ -35,7 +35,7 @@ export default function FeedbackDetails({ feedback }: FeedbackProps) {
   const { id } = router.query;
 
   return (
-    <div>
+    <div className="p-8">
       <Head>
         <title>Feedback</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
@@ -46,7 +46,7 @@ export default function FeedbackDetails({ feedback }: FeedbackProps) {
         <meta name="keywords" content="NextJS, Tailwind CSS, React" />
         <meta name="author" content="handleryouth" />
       </Head>
-      <div className="flex items-center justify-between ">
+      <div className="flex items-center justify-between  ">
         <div
           className="flex items-center cursor-pointer "
           onClick={() => router.back()}
