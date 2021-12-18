@@ -63,7 +63,7 @@ export interface FeedbackContainerProps {
   description: string;
   type: "UI" | "UX" | "Enhancement" | "Bug" | "Feature" | string;
   vote: number;
-  comments: Comments[];
+  comments?: Comments[];
 }
 
 export interface CommandbarProps {

@@ -59,19 +59,21 @@ const FeedbackContainer = ({
           {vote}
         </div>
 
-        <div className="flex items-center">
-          <div className="mr-2 flex items-center">
-            <Image
-              src="/Images/shared/icon-comments.svg"
-              alt="Comment Illustration"
-              width={18}
-              height={18}
-              layout="fixed"
-            />
-          </div>
+        {comments && (
+          <div className="flex items-center">
+            <div className="mr-2 flex items-center">
+              <Image
+                src="/Images/shared/icon-comments.svg"
+                alt="Comment Illustration"
+                width={18}
+                height={18}
+                layout="fixed"
+              />
+            </div>
 
-          <p>{comments.length}</p>
-        </div>
+            <p>{comments.length}</p>
+          </div>
+        )}
       </div>
     </div>
   );
