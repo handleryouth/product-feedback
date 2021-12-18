@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { MockFeedback } from "../types";
+import { FeedbackContainerProps } from "../types";
 
 const FeedbackContainer = ({
   description,
@@ -9,7 +9,7 @@ const FeedbackContainer = ({
   vote,
   comments,
   _id,
-}: MockFeedback) => {
+}: FeedbackContainerProps) => {
   const router = useRouter();
   return (
     <div
