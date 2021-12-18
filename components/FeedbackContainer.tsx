@@ -1,29 +1,22 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { FeedbackContainerProps } from "../types";
 
-interface FeedbackContainerProps {
-  id?: string;
-  title: string;
-  description: string;
-  type: "UI" | "UX" | "Enhancement" | "Bug" | "Feature" | string;
-  vote: number;
-}
-
-export const FeedbackContainer = ({
+const FeedbackContainer = ({
   description,
   title,
   type,
   vote,
-  id,
+  _id,
 }: FeedbackContainerProps) => {
   const router = useRouter();
   return (
     <div
       className={`flex-col sm:flex-row flex my-4 bg-white sm:items-center rounded-md py-4 px-8 justify-between cursor-pointer ${
-        id ? `hover:border-2 hover:border-purple` : ""
+        _id ? `hover:border-2 hover:border-purple` : ""
       }`}
       onClick={() => {
-        id && router.push(`/feedback/${id}`);
+        _id && router.push(`/feedback/${_id}`);
       }}
     >
       <div className="flex items-center">
@@ -82,3 +75,5 @@ export const FeedbackContainer = ({
     </div>
   );
 };
+
+export default FeedbackContainer;

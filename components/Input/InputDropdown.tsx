@@ -1,13 +1,6 @@
-interface InputDropdownProps {
-  title?: string;
-  label: string;
-  list: string[];
-  flex: "flex-col" | "flex-row";
-  toggleFunction: (value: string) => void;
-  defaultValue?: string;
-}
+import { InputDropdownProps } from "../../types";
 
-export const InputDropdown = ({
+const InputDropdown = ({
   list,
   title,
   label,
@@ -50,3 +43,5 @@ export const InputDropdown = ({
     </div>
   );
 };
+
+export default InputDropdown;

@@ -1,10 +1,6 @@
-interface RoadmapChildProps {
-  title: "Suggestion" | "Planned" | "In-Progress" | "Live";
-  amount?: number;
-  color: string;
-}
+import { RoadmapChildProps } from "../../types";
 
-export const RoadmapChild = ({ title, amount, color }: RoadmapChildProps) => {
+const RoadmapChild = ({ title, amount, color }: RoadmapChildProps) => {
   return (
     <div className="flex justify-between items-center">
       <div className="flex items-center">
@@ -15,3 +11,5 @@ export const RoadmapChild = ({ title, amount, color }: RoadmapChildProps) => {
     </div>
   );
 };
+
+export default RoadmapChild;

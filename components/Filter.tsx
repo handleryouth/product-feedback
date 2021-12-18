@@ -1,13 +1,6 @@
-import { SetStateAction } from "react";
+import { FilterProps } from "../types";
 
-interface FilterProps {
-  filter: undefined | "UI" | "UX" | "Enhancement" | "Bug" | "Feature";
-  setFilter: React.Dispatch<
-    SetStateAction<undefined | "UI" | "UX" | "Enhancement" | "Bug" | "Feature">
-  >;
-}
-
-export const Filter = ({ setFilter, filter }: FilterProps) => {
+const Filter = ({ setFilter, filter }: FilterProps) => {
   return (
     <div className=" flex bg-white w-60 rounded-md p-4 my-8 flex-wrap ">
       <div
@@ -73,3 +66,5 @@ export const Filter = ({ setFilter, filter }: FilterProps) => {
     </div>
   );
 };
+
+export default Filter;

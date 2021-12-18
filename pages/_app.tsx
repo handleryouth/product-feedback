@@ -1,7 +1,7 @@
-import "../styles/globals.css";
-import "@fontsource/jost";
 import type { AppProps } from "next/app";
+import "@fontsource/jost";
 import { Layout } from "../components";
+import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

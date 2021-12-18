@@ -2,9 +2,9 @@ import { useState } from "react";
 import * as Tabs from "@radix-ui/react-tabs";
 import { IdProvider } from "@radix-ui/react-id";
 import { mockFeedback } from "../../mock";
-import { StatusSection } from "../StatusSection";
+import StatusSection from "../StatusSection";
 
-export const Roadmaptab = () => {
+const Roadmaptab = () => {
   const [selectedTab, setSelectedTab] = useState<
     "Planned" | "Live" | "In-Progress"
   >("Planned");
@@ -66,3 +66,5 @@ export const Roadmaptab = () => {
     </IdProvider>
   );
 };
+
+export default Roadmaptab;

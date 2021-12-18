@@ -1,16 +1,37 @@
-import Head from "next/head";
-import type { NextPage } from "next";
 import { useCallback, useEffect, useState } from "react";
+import type {
+  GetServerSideProps,
+  InferGetServerSidePropsType,
+  NextPage,
+} from "next";
+import Head from "next/head";
+import axios from "axios";
+import { MockFeedback } from "../types";
 import {
   Sidebar,
   Commandbar,
   FeedbackContainer,
   Sidemenu,
 } from "../components";
-import { mockFeedback, MockFeedback } from "../mock";
 
-const Home: NextPage = () => {
-  const [feedback, setFeedback] = useState<MockFeedback[]>(mockFeedback);
+export const getServerSideProps: GetServerSideProps = async () => {
+  const responseData = await axios
+    .get("https://protected-hamlet-83366.herokuapp.com/")
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => console.log(err.message));
+
+  return {
+    props: { data: responseData },
+  };
+};
+
+const Home: NextPage = ({
+  data,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  const [feedback, setFeedback] = useState<MockFeedback[]>(data);
+
   const [filter, setFilter] = useState<
     "UI" | "UX" | "Enhancement" | "Bug" | "Feature" | undefined
   >();
@@ -40,7 +61,7 @@ const Home: NextPage = () => {
     return (
       <div>
         {feedback.map((item) => {
-          return <FeedbackContainer key={item.id} {...item} />;
+          return <FeedbackContainer key={item._id} {...item} />;
         })}
       </div>
     );
@@ -49,14 +70,14 @@ const Home: NextPage = () => {
   useEffect(() => {
     setFeedback(
       filter !== undefined
-        ? mockFeedback
+        ? (data as MockFeedback[])
             .filter(
               (item) => item.status === "Suggestion" && item.type === filter
             )
             .sort(function (a, b) {
               return handleSorting(a, b);
             })
-        : mockFeedback
+        : (data as MockFeedback[])
             .filter((item) => item.status === "Suggestion")
             .sort(function (a, b) {
               return handleSorting(a, b);
@@ -64,8 +85,9 @@ const Home: NextPage = () => {
     );
 
     return () => {
-      setFeedback(mockFeedback);
+      setFeedback([]);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filter, handleSorting]);
 
   return (
@@ -75,6 +97,7 @@ const Home: NextPage = () => {
         setFilter={setFilter}
         visible={open}
         setVisible={setOpen}
+        data={data as MockFeedback[]}
       />
       <div className="flex flex-col mx-auto h-auto px-8 lg:px-0 lg:flex-row lg:w-5/6 py-8">
         <Head>
@@ -96,6 +119,7 @@ const Home: NextPage = () => {
           setFilter={setFilter}
           open={open}
           setOpen={setOpen}
+          data={data as MockFeedback[]}
         />
         <div className="w-full">
           <Commandbar setSort={setSort} feedback={feedback} />

@@ -1,11 +1,6 @@
-interface InputTextAreaProps {
-  title: string;
-  label: string;
-  toggleFunction: (value: string) => void;
-  defaultValue?: string;
-}
+import { InputTextAreaProps } from "../../types";
 
-export const InputTextArea = ({
+const InputTextArea = ({
   title,
   label,
   toggleFunction,
@@ -29,3 +24,5 @@ export const InputTextArea = ({
     </div>
   );
 };
+
+export default InputTextArea;

@@ -1,19 +1,12 @@
-import Image from "next/image";
 import { useCallback } from "react";
-import { RoadmapChild } from ".";
-import { MockFeedback } from "../mock";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import { StatusSectionProps } from "../types";
+import RoadmapChild from "./Roadmap/RoadmapChild";
 
-interface StatusSectionProps {
-  title: "Planned" | "In-progress" | "Live";
-  description: string;
-  data: MockFeedback[];
-}
+const StatusSection = ({ title, description, data }: StatusSectionProps) => {
+  const router = useRouter();
 
-export const StatusSection = ({
-  title,
-  description,
-  data,
-}: StatusSectionProps) => {
   const borderColorSwitching = useCallback(() => {
     switch (title) {
       case "Planned":
@@ -36,7 +29,10 @@ export const StatusSection = ({
           return (
             <div
               key={index}
-              className={`my-8 p-8 border-t-4 ${borderColorSwitching()} bg-white rounded`}
+              className={`my-8 p-8 border-t-4 cursor-pointer ${borderColorSwitching()} bg-white rounded`}
+              onClick={() => {
+                router.push("/feedback/" + item._id);
+              }}
             >
               <RoadmapChild title={item.status} color="bg-indigo-700" />
 
@@ -78,3 +74,5 @@ export const StatusSection = ({
     </div>
   );
 };
+
+export default StatusSection;

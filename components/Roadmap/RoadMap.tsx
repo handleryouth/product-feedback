@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { RoadmapChild } from "./RoadmapChild";
-import { mockFeedback } from "../../mock";
+import { MockFeedback, RoadMapProps } from "../../types";
+import RoadmapChild from "./RoadmapChild";
 
-export const RoadMap = () => {
+const RoadMap = (data: RoadMapProps) => {
   return (
     <div className="rounded-md bg-white p-4 h-44 lg:h-auto lg:w-60 mt-16 sm:mt-0">
       <div className="flex justify-between mb-4">
@@ -16,7 +16,8 @@ export const RoadMap = () => {
         <RoadmapChild
           title="Planned"
           amount={
-            mockFeedback.filter((item) => item.status === "Planned").length
+            data.data.filter((item: MockFeedback) => item.status === "Planned")
+              .length
           }
           color="bg-cream"
         />
@@ -24,17 +25,24 @@ export const RoadMap = () => {
         <RoadmapChild
           title="In-Progress"
           amount={
-            mockFeedback.filter((item) => item.status === "In-Progress").length
+            data.data.filter(
+              (item: MockFeedback) => item.status === "In-Progress"
+            ).length
           }
           color="bg-purple"
         />
 
         <RoadmapChild
           title="Live"
-          amount={mockFeedback.filter((item) => item.status === "Live").length}
+          amount={
+            data.data.filter((item: MockFeedback) => item.status === "Live")
+              .length
+          }
           color="bg-skyblue"
         />
       </div>
     </div>
   );
 };
+
+export default RoadMap;

@@ -1,15 +1,9 @@
 import { useRouter } from "next/router";
 import Image from "next/image";
-import { Dispatch, SetStateAction } from "react";
-import { InputDropdown } from ".";
-import { MockFeedback } from "../mock";
+import { CommandbarProps } from "../types";
+import InputDropdown from "./Input/InputDropdown";
 
-interface CommandbarProps {
-  setSort: Dispatch<SetStateAction<string>>;
-  feedback: MockFeedback[];
-}
-
-export const Commandbar = ({ setSort, feedback }: CommandbarProps) => {
+const Commandbar = ({ setSort, feedback }: CommandbarProps) => {
   const router = useRouter();
   return (
     <div className="flex-col sm:flex-row bg-darkBlue flex items-center p-4 justify-between text-white md:rounded-md font-bold">
@@ -50,3 +44,5 @@ export const Commandbar = ({ setSort, feedback }: CommandbarProps) => {
     </div>
   );
 };
+
+export default Commandbar;

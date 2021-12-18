@@ -1,24 +1,67 @@
+import { useCallback, useState } from "react";
+import { useRouter } from "next/router";
 import Image from "next/image";
-import { useState } from "react";
+import axios from "axios";
 import { useImmer } from "use-immer";
-import { InputComment } from ".";
-import { Comments, IndividualComment } from "../mock";
+import { Comments, IndividualComment } from "../types";
+import InputComment from "./Input/InputComment";
 
-export const Comment = ({
+const Comment = ({
   comment,
   name,
   profilePicture,
   username,
   replyTo,
+  _id,
+  router_id,
 }: Comments) => {
   const [reply, setReply] = useState<boolean>(false);
-  const [inputTemplate, setInputTemplate] = useImmer<
-    Omit<IndividualComment, "profilePicture">
-  >({
-    name: "Your name",
-    username: "Your name",
-    comment: "",
-  });
+  const [replyInputTemplate, setReplyInputTemplate] =
+    useImmer<IndividualComment>({
+      profilePicture: "/Images/user-images/image-jesse.jpg",
+      name: "tony",
+      username: "handleryouth",
+      comment: "",
+      replyTo: username,
+    });
+
+  const router = useRouter();
+
+  const handleSubmitReply = useCallback(() => {
+    axios({
+      method: "post",
+      url: `https://protected-hamlet-83366.herokuapp.com/reply/${router_id}`,
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      data: {
+        selected_id: _id,
+        name: replyInputTemplate.name,
+        profilePicture: replyInputTemplate.profilePicture,
+        username: replyInputTemplate.username,
+        comment: replyInputTemplate.comment,
+        replyTo: replyInputTemplate.replyTo,
+      },
+    })
+      .then(() => {
+        setReplyInputTemplate((draft) => {
+          draft.comment = "";
+        });
+        router.reload();
+      })
+      .catch((err) => console.log(err));
+  }, [
+    _id,
+    replyInputTemplate.comment,
+    replyInputTemplate.name,
+    replyInputTemplate.profilePicture,
+    replyInputTemplate.replyTo,
+    replyInputTemplate.username,
+    router,
+    router_id,
+    setReplyInputTemplate,
+  ]);
 
   return (
     <div className="flex items-start my-8">
@@ -41,25 +84,30 @@ export const Comment = ({
 
           <p
             className="text-seablue font-bold cursor-pointer"
-            onClick={() => setReply((prevState) => !prevState)}
+            onClick={() => {
+              setReply((prevState) => !prevState);
+            }}
           >
             Reply
           </p>
         </div>
 
         <p>
-          {replyTo && <span>{replyTo}</span>}
+          {replyTo && <span className="text-purple mr-2">{replyTo}</span>}
           {comment}
         </p>
 
         {reply && (
           <InputComment
             toggleFunction={(value) =>
-              setInputTemplate((draft) => void (draft.comment = value))
+              setReplyInputTemplate((draft) => void (draft.comment = value))
             }
+            toggleSubmit={handleSubmitReply}
           />
         )}
       </div>
     </div>
   );
 };
+
+export default Comment;

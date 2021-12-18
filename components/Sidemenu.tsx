@@ -1,17 +1,8 @@
-import { SetStateAction } from "react";
-import { RoadMap } from "./Roadmap/RoadMap";
-import { Filter } from "./Filter";
+import { SidemenuProps } from "../types";
+import Filter from "./Filter";
+import RoadMap from "./Roadmap/RoadMap";
 
-interface SidemenuProps {
-  filter: undefined | "UI" | "UX" | "Enhancement" | "Bug" | "Feature";
-  setFilter: React.Dispatch<
-    SetStateAction<undefined | "UI" | "UX" | "Enhancement" | "Bug" | "Feature">
-  >;
-  visible: boolean;
-  setVisible: React.Dispatch<SetStateAction<boolean>>;
-}
-
-export const Sidemenu = ({ visible, setVisible, ...rest }: SidemenuProps) => {
+const Sidemenu = ({ visible, setVisible, data, ...rest }: SidemenuProps) => {
   return (
     <div
       className={`${
@@ -25,7 +16,9 @@ export const Sidemenu = ({ visible, setVisible, ...rest }: SidemenuProps) => {
         x
       </div>
       <Filter {...rest} />
-      <RoadMap />
+      <RoadMap data={data} />
     </div>
   );
 };
+
+export default Sidemenu;

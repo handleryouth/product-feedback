@@ -1,8 +1,6 @@
-interface InputCommentProps {
-  toggleFunction: (value: string) => void;
-}
+import { InputCommentProps } from "../../types";
 
-export function InputComment({ toggleFunction }: InputCommentProps) {
+const InputComment = ({ toggleFunction, toggleSubmit }: InputCommentProps) => {
   return (
     <div className="mt-4">
       <textarea
@@ -12,9 +10,14 @@ export function InputComment({ toggleFunction }: InputCommentProps) {
         onChange={(e) => toggleFunction(e.target.value)}
       />
 
-      <button className="bg-purple text-white px-6 py-2 rounded mt-4">
+      <button
+        className="bg-purple text-white px-6 py-2 rounded mt-4"
+        onClick={toggleSubmit}
+      >
         Post Reply
       </button>
     </div>
   );
-}
+};
+
+export default InputComment;

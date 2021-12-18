@@ -1,16 +1,6 @@
-interface InputProps {
-  title: string;
-  label: string;
-  toggleFunction: (e: string) => void;
-  defaultValue?: string;
-}
+import { InputProps } from "../../types";
 
-export const Input = ({
-  title,
-  label,
-  toggleFunction,
-  defaultValue,
-}: InputProps) => {
+const Input = ({ title, label, toggleFunction, defaultValue }: InputProps) => {
   return (
     <div className="my-4">
       <h3 className="text-darkBlue font-bold">{title}</h3>
@@ -27,3 +17,5 @@ export const Input = ({
     </div>
   );
 };
+
+export default Input;
