@@ -30,7 +30,13 @@ export const getServerSideProps: GetServerSideProps = async () => {
 const Home: NextPage = ({
   data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  const [feedback, setFeedback] = useState<MockFeedback[]>(data);
+  const [feedback, setFeedback] = useState<MockFeedback[]>(
+    (data as MockFeedback[])
+      .filter((item) => item.status === "Suggestion")
+      .sort(function (a, b) {
+        return b.vote - a.vote;
+      })
+  );
 
   const [filter, setFilter] = useState<
     "UI" | "UX" | "Enhancement" | "Bug" | "Feature" | undefined
