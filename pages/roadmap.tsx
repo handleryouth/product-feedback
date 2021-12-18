@@ -27,8 +27,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
 const Roadmap: NextPage = ({
   data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  const roadmapData = useRef<MockFeedback[]>(data);
-
   const navbar = useMemo(() => {
     return (
       <div className="flex-col sm:flex-row flex items-center justify-between bg-darkBlue text-white rounded p-8">
@@ -79,19 +77,21 @@ const Roadmap: NextPage = ({
       </Head>
 
       {navbar}
-      <Roadmaptab />
+      <Roadmaptab feedback={data as MockFeedback[]} />
 
       <div className="hidden md:grid grid-cols-3 gap-x-10 mt-16">
         <StatusSection
           title="Planned"
           description="Ideas prioritized for research"
-          data={roadmapData.current.filter((mock) => mock.status === "Planned")}
+          data={(data as MockFeedback[]).filter(
+            (mock) => mock.status === "Planned"
+          )}
         />
 
         <StatusSection
           title="In-progress"
           description="Currently being developed"
-          data={roadmapData.current.filter(
+          data={(data as MockFeedback[]).filter(
             (mock) => mock.status === "In-Progress"
           )}
         />
@@ -99,7 +99,9 @@ const Roadmap: NextPage = ({
         <StatusSection
           title="Live"
           description="Released features"
-          data={roadmapData.current.filter((mock) => mock.status === "Live")}
+          data={(data as MockFeedback[]).filter(
+            (mock) => mock.status === "Live"
+          )}
         />
       </div>
     </div>

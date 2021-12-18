@@ -1,10 +1,10 @@
 import { useState } from "react";
 import * as Tabs from "@radix-ui/react-tabs";
 import { IdProvider } from "@radix-ui/react-id";
-import { mockFeedback } from "../../mock";
+import { RoadmaptabProps } from "../../types";
 import StatusSection from "../StatusSection";
 
-const Roadmaptab = () => {
+const Roadmaptab = ({ feedback }: RoadmaptabProps) => {
   const [selectedTab, setSelectedTab] = useState<
     "Planned" | "Live" | "In-Progress"
   >("Planned");
@@ -45,21 +45,21 @@ const Roadmaptab = () => {
           <StatusSection
             title="Planned"
             description="Ideas prioritized for research"
-            data={mockFeedback.filter((mock) => mock.status === "Planned")}
+            data={feedback.filter((mock) => mock.status === "Planned")}
           />
         </Tabs.Content>
         <Tabs.Content value="Live">
           <StatusSection
             title="Live"
             description="Released features"
-            data={mockFeedback.filter((mock) => mock.status === "Live")}
+            data={feedback.filter((mock) => mock.status === "Live")}
           />
         </Tabs.Content>
         <Tabs.Content value="In-Progress">
           <StatusSection
             title="In-progress"
             description="Currently being developed"
-            data={mockFeedback.filter((mock) => mock.status === "In-Progress")}
+            data={feedback.filter((mock) => mock.status === "In-Progress")}
           />
         </Tabs.Content>
       </Tabs.Root>

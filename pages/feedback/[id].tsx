@@ -1,4 +1,4 @@
-import { useCallback, useRef } from "react";
+import { useCallback } from "react";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -24,7 +24,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 export default function FeedbackDetails({
   data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  const feedbackData = useRef<MockFeedback>(data);
   const router = useRouter();
 
   const [commentTemplate, setCommentTemplate] = useImmer<
@@ -109,17 +108,17 @@ export default function FeedbackDetails({
       </div>
 
       <FeedbackContainer
-        title={feedbackData.current.title}
-        description={feedbackData.current.description}
-        type={feedbackData.current.type}
-        vote={feedbackData.current.vote}
+        title={(data as MockFeedback).title}
+        description={(data as MockFeedback).description}
+        type={(data as MockFeedback).type}
+        vote={(data as MockFeedback).vote}
       />
 
       <div className="bg-white p-8 rounded-md">
         <h3 className="text-2xl text-darkBlue font-bold">
-          {feedbackData.current.comments.length} Comments
+          {(data as MockFeedback).comments.length} Comments
         </h3>
-        {feedbackData.current.comments.map((comment, index) => {
+        {(data as MockFeedback).comments.map((comment, index) => {
           return (
             <div key={index}>
               <div>

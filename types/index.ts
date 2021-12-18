@@ -75,6 +75,10 @@ export interface RoadMapProps {
   data: MockFeedback[];
 }
 
+export interface RoadmaptabProps {
+  feedback: MockFeedback[];
+}
+
 export interface RoadmapChildProps {
   title: "Planned" | "In-Progress" | "Live" | string;
   amount?: number;
