@@ -57,14 +57,6 @@ export interface FilterProps {
   >;
 }
 
-export interface FeedbackContainerProps {
-  _id?: string;
-  title: string;
-  description: string;
-  type: "UI" | "UX" | "Enhancement" | "Bug" | "Feature" | string;
-  vote: number;
-}
-
 export interface CommandbarProps {
   setSort: Dispatch<SetStateAction<string>>;
   feedback: MockFeedback[];
