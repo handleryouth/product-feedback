@@ -6,6 +6,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        "small-phone": "500px",
+      },
       colors: {
         cream: "#f49f85",
         purple: "#ad1fea",

@@ -120,7 +120,7 @@ export default function FeedbackDetails({
         </h3>
         {(data as MockFeedback).comments.map((comment, index) => {
           return (
-            <div key={index}>
+            <div key={index} className="border-y small-phone:border-y-0">
               <div>
                 <Comment
                   key={comment._id}
@@ -133,7 +133,7 @@ export default function FeedbackDetails({
                 />
               </div>
 
-              <div className="ml-16">
+              <div className="small-phone:ml-16">
                 {comment.reply?.map((reply) => {
                   return (
                     <Comment
@@ -168,7 +168,7 @@ export default function FeedbackDetails({
           }
           maxLength={250}
         />
-        <div className="flex justify-between items-center mt-4">
+        <div className="flex flex-col small-phone:flex-row  justify-between small-phone:items-center mt-4">
           <p className="text-grey">
             {250 - commentTemplate.comment.length} characters left
           </p>

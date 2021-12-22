@@ -76,7 +76,7 @@ const Comment = ({
       </div>
 
       <div className="w-full">
-        <div className="flex items-center justify-between">
+        <div className="flex small-phone:flex-row flex-col  small-phone:items-center justify-between">
           <div>
             <p className="text-darkBlue">{name}</p>
             <p className="text-grey">@{username}</p>
